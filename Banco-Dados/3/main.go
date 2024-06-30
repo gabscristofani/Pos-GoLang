@@ -8,8 +8,9 @@ import (
 )
 
 type Category struct {
-	ID   int `gorm:"primaryKey"`
-	Name string
+	ID      int `gorm:"primaryKey"`
+	Name    string
+	Producs []Product
 }
 
 type Product struct {
@@ -34,7 +35,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	db.AutoMigrate(&Product{}, &Category{})
+	db.AutoMigrate(&Product{}, &Category{}, &SerialNumber{})
 
 	// create category
 	category := Category{Name: "Eletronicos"}
